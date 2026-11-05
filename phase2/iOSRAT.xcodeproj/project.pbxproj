@@ -1,0 +1,235 @@
+{
+  "archiveVersion": "1",
+  "classes": {},
+  "objectVersion": "50",
+  "objects": {
+    "0615423A4BD13DBDE1A5B3BAE012598D": {
+      "fileRef": "32584E49590D12DD44DD78EB28BA5D72",
+      "isa": "PBXBuildFile"
+    },
+    "0DB80E8EF986290C1182A28411258DAA": {
+      "buildSettings": {
+        "ALWAYS_SEARCH_USER_PATHS": "NO",
+        "CLANG_ALLOW_NON_MODULAR_INCLUDES_IN_FRAMEWORK_MODULES": "YES",
+        "CLANG_CXX_LANGUAGE_STANDARD": "gnu17",
+        "CLANG_C_LANGUAGE_STANDARD": "gnu17",
+        "COPY_PHASE_STRIP": "NO",
+        "ENABLE_TESTABILITY": "YES",
+        "ENABLE_USER_SCRIPT_SANDBOXING": "YES",
+        "GCC_C_LANGUAGE_STANDARD": "gnu17",
+        "GCC_OPTIMIZATION_LEVEL": "0",
+        "INFOPLIST_FILE": "iOSRAT/Info.plist",
+        "IPHONEOS_DEPLOYMENT_TARGET": "16.0",
+        "MARKETING_VERSION": "1.0",
+        "PRODUCT_BUNDLE_IDENTIFIER": "com.xag.iosrat",
+        "PRODUCT_NAME": "$(TARGET_NAME)",
+        "SWIFT_COMPILATION_MODE": "wholesodule",
+        "SWIFT_OPTIMIZATION_LEVEL": "",
+        "SWIFT_VERSION": "5.0",
+        "TARGETED_DEVICE_FAMILY": "1,2"
+      },
+      "isa": "XCBuildConfiguration",
+      "name": "Debug"
+    },
+    "1E1886BD031EA5AE9F91575F20F99C98": {
+      "fileRef": "5F2C00875E37A2E93269FD16386AD2FB",
+      "isa": "PBXBuildFile"
+    },
+    "2B04789932FA4ADAF8A59F5B99990D72": {
+      "buildSettings": {
+        "ALWAYS_SEARCH_USER_PATHS": "NO",
+        "CLANG_ALLOW_NON_MODULAR_INCLUDES_IN_FRAMEWORK_MODULES": "YES",
+        "CLANG_CXX_LANGUAGE_STANDARD": "gnu17",
+        "CLANG_C_LANGUAGE_STANDARD": "gnu17",
+        "COPY_PHASE_STRIP": "NO",
+        "ENABLE_TESTABILITY": "YES",
+        "ENABLE_USER_SCRIPT_SANDBOXING": "YES",
+        "GCC_C_LANGUAGE_STANDARD": "gnu17",
+        "GCC_OPTIMIZATION_LEVEL": "0",
+        "INFOPLIST_FILE": "iOSRAT/Info.plist",
+        "IPHONEOS_DEPLOYMENT_TARGET": "16.0",
+        "MARKETING_VERSION": "1.0",
+        "PRODUCT_BUNDLE_IDENTIFIER": "com.xag.iosrat",
+        "PRODUCT_NAME": "$(TARGET_NAME)",
+        "SWIFT_COMPILATION_MODE": "wholesodule",
+        "SWIFT_OPTIMIZATION_LEVEL": "",
+        "SWIFT_VERSION": "5.0",
+        "TARGETED_DEVICE_FAMILY": "1,2"
+      },
+      "isa": "XCBuildConfiguration",
+      "name": "Debug"
+    },
+    "2CC5450D427D06F41DD955DC710161FA": {
+      "buildConfigurationList": "76568B46A7A54A4821A29D3EDFC66A57",
+      "buildPhases": [
+        "33BFC559518D7C169CA6A38CBAC6D800",
+        "E4E7EAAA6FFB63A1C0DE18807C798EF7",
+        "5E58C8A453A126E64B49D24DCBDCCCA3"
+      ],
+      "isa": "PBXNativeTarget",
+      "name": "iOSRAT",
+      "productReference": "7A9B25419BE36A819615FA2267745EB3",
+      "productType": "com.apple.producttype.application"
+    },
+    "2E7717D623E0CF985AC0E6AD4F66508C": {
+      "buildConfigurationList": "CCF42AB02F232DC50AAE542FA4820253",
+      "compatibilityVersion": "Xcode 14.0",
+      "developmentRegion": "en",
+      "hasScannedForEncodings": 0,
+      "isa": "PBXProject",
+      "knownRegions": [
+        "en",
+        "Base"
+      ],
+      "mainGroup": "C8145FB0F85A050A2624288FA6E30AB4",
+      "productBundleIdentifier": "com.xag.iosrat",
+      "target": "2CC5450D427D06F41DD955DC710161FA"
+    },
+    "32584E49590D12DD44DD78EB28BA5D72": {
+      "isa": "PBXFileReference",
+      "lastKnownFileType": "sourcecode.swift",
+      "name": "Constants.swift",
+      "path": "iOSRAT/Constants.swift",
+      "sourceTree": "<group>"
+    },
+    "33BFC559518D7C169CA6A38CBAC6D800": {
+      "files": [
+        "68820A97E2A82E95CAE47338D7CA9E6C",
+        "1E1886BD031EA5AE9F91575F20F99C98",
+        "0615423A4BD13DBDE1A5B3BAE012598D"
+      ],
+      "isa": "PBXSourcesBuildPhase",
+      "runOnlyForDeploymentPostprocessing": 0
+    },
+    "5E58C8A453A126E64B49D24DCBDCCCA3": {
+      "files": [],
+      "isa": "PBXResourcesBuildPhase",
+      "runOnlyForDeploymentPostprocessing": 0
+    },
+    "5F2C00875E37A2E93269FD16386AD2FB": {
+      "isa": "PBXFileReference",
+      "lastKnownFileType": "sourcecode.swift",
+      "name": "ViewController.swift",
+      "path": "iOSRAT/ViewController.swift",
+      "sourceTree": "<group>"
+    },
+    "68820A97E2A82E95CAE47338D7CA9E6C": {
+      "fileRef": "F690C48010051FEA859E8F6813FD1C9A",
+      "isa": "PBXBuildFile"
+    },
+    "73B34C70C241CA5E572310D235A2093D": {
+      "buildSettings": {
+        "ALWAYS_SEARCH_USER_PATHS": "NO",
+        "CLANG_CXX_LANGUAGE_STANDARD": "gnu17",
+        "CLANG_C_LANGUAGE_STANDARD": "gnu17",
+        "COPY_PHASE_STRIP": "NO",
+        "ENABLE_TESTABILITY": "YES",
+        "GCC_C_LANGUAGE_STANDARD": "gnu17",
+        "GCC_OPTIMIZATION_LEVEL": "0",
+        "INFOPLIST_FILE": "iOSRAT/Info.plist",
+        "IPHONEOS_DEPLOYMENT_TARGET": "16.0",
+        "MARKETING_VERSION": "1.0",
+        "PRODUCT_BUNDLE_IDENTIFIER": "com.xag.iosrat",
+        "PRODUCT_NAME": "$(TARGET_NAME)",
+        "SWIFT_COMPILATION_MODE": "wholesodule",
+        "SWIFT_OPTIMIZATION_LEVEL": "",
+        "SWIFT_VERSION": "5.0",
+        "TARGETED_DEVICE_FAMILY": "1,2"
+      },
+      "isa": "XCBuildConfiguration",
+      "name": "Release"
+    },
+    "76568B46A7A54A4821A29D3EDFC66A57": {
+      "buildConfigurationList": [
+        "2B04789932FA4ADAF8A59F5B99990D72",
+        "96B75781561CC3A78DC78EBD07F5CCD2"
+      ],
+      "defaultConfigurationIsVisible": 0,
+      "isa": "XCConfigurationList"
+    },
+    "7A9B25419BE36A819615FA2267745EB3": {
+      "isa": "PBXFileReference",
+      "lastKnownFileType": "wrapper.application",
+      "name": "iOSRAT",
+      "path": "iOSRAT",
+      "sourceTree": "<group>"
+    },
+    "96B75781561CC3A78DC78EBD07F5CCD2": {
+      "buildSettings": {
+        "ALWAYS_SEARCH_USER_PATHS": "NO",
+        "CLANG_CXX_LANGUAGE_STANDARD": "gnu17",
+        "CLANG_C_LANGUAGE_STANDARD": "gnu17",
+        "COPY_PHASE_STRIP": "NO",
+        "ENABLE_TESTABILITY": "YES",
+        "GCC_C_LANGUAGE_STANDARD": "gnu17",
+        "GCC_OPTIMIZATION_LEVEL": "0",
+        "INFOPLIST_FILE": "iOSRAT/Info.plist",
+        "IPHONEOS_DEPLOYMENT_TARGET": "16.0",
+        "MARKETING_VERSION": "1.0",
+        "PRODUCT_BUNDLE_IDENTIFIER": "com.xag.iosrat",
+        "PRODUCT_NAME": "$(TARGET_NAME)",
+        "SWIFT_COMPILATION_MODE": "wholesodule",
+        "SWIFT_OPTIMIZATION_LEVEL": "",
+        "SWIFT_VERSION": "5.0",
+        "TARGETED_DEVICE_FAMILY": "1,2"
+      },
+      "isa": "XCBuildConfiguration",
+      "name": "Release"
+    },
+    "A26B2558342A894515D95AEBB2EB12F6": {
+      "children": [
+        "7A9B25419BE36A819615FA2267745EB3"
+      ],
+      "isa": "PBXGroup",
+      "name": "Products",
+      "sourceTree": "<group>"
+    },
+    "B47AFF11B996D8CB03911141A49F1AD8": {
+      "children": [
+        "F690C48010051FEA859E8F6813FD1C9A",
+        "5F2C00875E37A2E93269FD16386AD2FB",
+        "32584E49590D12DD44DD78EB28BA5D72",
+        "C2E7EBF58B2112546C5DFD424312C37E"
+      ],
+      "isa": "PBXGroup",
+      "path": "iOSRAT",
+      "sourceTree": "<group>"
+    },
+    "C2E7EBF58B2112546C5DFD424312C37E": {
+      "isa": "PBXFileReference",
+      "lastKnownFileType": "text.plist.xml",
+      "name": "Info.plist",
+      "path": "iOSRAT/Info.plist",
+      "sourceTree": "<group>"
+    },
+    "C8145FB0F85A050A2624288FA6E30AB4": {
+      "children": [
+        "B47AFF11B996D8CB03911141A49F1AD8",
+        "A26B2558342A894515D95AEBB2EB12F6"
+      ],
+      "isa": "PBXGroup",
+      "sourceTree": "<group>"
+    },
+    "CCF42AB02F232DC50AAE542FA4820253": {
+      "buildConfigurationList": [
+        "0DB80E8EF986290C1182A28411258DAA",
+        "73B34C70C241CA5E572310D235A2093D"
+      ],
+      "defaultConfigurationIsVisible": 0,
+      "isa": "XCConfigurationList"
+    },
+    "E4E7EAAA6FFB63A1C0DE18807C798EF7": {
+      "files": [],
+      "isa": "PBXFrameworksBuildPhase",
+      "runOnlyForDeploymentPostprocessing": 0
+    },
+    "F690C48010051FEA859E8F6813FD1C9A": {
+      "isa": "PBXFileReference",
+      "lastKnownFileType": "sourcecode.swift",
+      "name": "AppDelegate.swift",
+      "path": "iOSRAT/AppDelegate.swift",
+      "sourceTree": "<group>"
+    }
+  },
+  "rootObject": "2E7717D623E0CF985AC0E6AD4F66508C"
+}

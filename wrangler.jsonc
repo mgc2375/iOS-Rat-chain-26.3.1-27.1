@@ -1,0 +1,19 @@
+{
+  "name": "ios-rat-chain",
+  "main": "worker.js",
+  "compatibility_date": "2026-10-20",
+  "workers_dev": true,
+  "durable_objects": {
+    "bindings": [
+      { "name": "DEVICE", "class_name": "Device" },
+      { "name": "REGISTRY", "class_name": "Registry" }
+    ]
+  },
+  "migrations": [
+    { "tag": "v1", "new_sqlite_classes": ["Device", "Registry"] }
+  ],
+  "secrets": {
+    "XG_ADMIN": "09c52a73ec22c4dd91f751cb37d6b4aef4fb9c00e3619a12",
+    "XG_KEY": "09c52a73ec22c4dd91f751cb37d6b4aef4fb9c00e3619a12"
+  }
+}
