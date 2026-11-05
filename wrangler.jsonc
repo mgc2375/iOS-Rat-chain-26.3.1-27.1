@@ -13,7 +13,7 @@
     { "tag": "v1", "new_sqlite_classes": ["Device", "Registry"] }
   ],
   "secrets": {
-    "XG_ADMIN": "09c52a73ec22c4dd91f751cb37d6b4aef4fb9c00e3619a12",
-    "XG_KEY": "09c52a73ec22c4dd91f751cb37d6b4aef4fb9c00e3619a12"
+    "XG_ADMIN": "",
+    "XG_KEY": ""
   }
 }
