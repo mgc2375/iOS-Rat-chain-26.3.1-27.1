@@ -1,7 +1,7 @@
 import hmac, hashlib, json, urllib.request, urllib.parse, time, os
 
-U = "https://ios-rat-chain.maxvlogs75.workers.dev"
-TOKEN = os.environ.get("XG_ADMIN", "4d433dda40989656264f057b043d0f5987a619b6fb845347")
+U = ""
+TOKEN = os.environ.get("XG_ADMIN", "")
 KEY = os.environ.get("XG_KEY") or TOKEN
 UID = "TESTDEV-" + time.strftime("%Y%m%d-%H%M%S")
 
