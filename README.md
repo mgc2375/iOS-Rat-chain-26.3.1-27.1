@@ -7,3 +7,7 @@ keys and tokens in this repo were stubs anyways - however they have been removed
 This is a 2 click web kit exploit that deploys workers, breaks sandbox, beacons back, and embeds a C2 with persistence. - This is a loaded weapon treat it as such. It is deliberately pushed to this repo as a 2 click for the safety of the public. That being said it can very easily be converted into a 1 click and a 0-click if you know what you are doing. Please be careful. 
 
 I reject any liability for the use of this technology outside of the scope of authorised security testing and research. Use of this outside that scope is a crime 
+
+This repo focuses on CVEs in iOS 26.6-27.1 however some of these CVE's are class CVEs and backdate throughout previous versions. This is known to work for IOS 26.3.1-27.1
+
+Dating back prior to that can be achieved using CVEs patched in IOS 26.3.1 
