@@ -11,3 +11,5 @@ I reject any liability for the use of this technology outside of the scope of au
 This repo focuses on CVEs in iOS 26.6-27.1 however some of these CVE's are class CVEs and backdate throughout previous versions. This is known to work for IOS 26.3.1-27.1 on iPhones 12 - 16
 
 Dating back prior to that can be achieved using CVEs patched in IOS 26.3.1 
+
+Credit to https://github.com/htimesnine/DarkSword-RCE for the original darksword RCE Uncovering
